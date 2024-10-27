@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deadline Countdown</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e4ff;
+        }
+        #countdown {
+            font-size: 2em;
+            color: #d4af37;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(210, 210, 210, 0.5);
+            background: rgba(40, 34, 40, 0.12); /* Semi-transparent background */
+            padding: 20px 40px;
+            border-radius: 0px;
+            box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
+            position: relative;
+            top: -50px; /* Shift the box upwards */
+        }
+    </style>
+</head>
+<body>
+
+<div id="countdown">Calculating time till deadline...</div>
+
+<script>
+    function countdownToDeadline(deadlineDate) {
+        const now = new Date();
+        const timeDiff = deadlineDate - now;
+
+        if (timeDiff <= 0) {
+            document.getElementById("countdown").textContent = "The deadline has passed!";
+            return;
+        }
+
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const weeks = Math.floor(days / 7);
+        const remainingDays = days % 7;
+
+        let message;
+        if (days < 30) {
+            message = `It is ${days} day${days > 1 ? 's' : ''} till I see you again.`;
+        } else {
+            message = "It is ";
+            if (weeks > 0) message += `${weeks} week${weeks > 1 ? 's' : ''}`;
+            if (weeks > 0 && remainingDays > 0) message += " and ";
+            if (remainingDays > 0) message += `${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+            message += " till I see you again.";
+        }
+
+        document.getElementById("countdown").textContent = message;
+    }
+
+    // Set your deadline date here (YYYY-MM-DD)
+    const deadlineDate = new Date("2024-12-18");
+
+    countdownToDeadline(deadlineDate);
+    setInterval(() => countdownToDeadline(deadlineDate), 86400000); // Update every 24 hours
+</script>
+
+</body>
+</html>
