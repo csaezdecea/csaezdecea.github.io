@@ -63,8 +63,13 @@
         .about-me-table img {
             width: 100%;
             height: auto;
-            max-width: 1600px; /* size pic */
+            max-width: 100%; /* Responsive: fill container on mobile */
             border-radius: 8px;
+        }
+        @media (min-width: 720px) {
+            .about-me-table img {
+                max-width: 1600px; /* Larger on bigger screens */
+            }
         }
     </style>
 </head>
