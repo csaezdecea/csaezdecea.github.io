@@ -35,6 +35,12 @@
             overflow-wrap: break-word; /*  Ensures long words wrap to the next line */
             border-right: 2px solid #ffffff; /* Vertical line on the right */
         }
+        /* Only apply hyphens on screens narrower than 560px (adjust as needed) */
+        @media (max-width: 560px) {
+            .about-me-text {
+            hyphens: auto;
+            }
+        }
         ul {
             list-style-type: none;
             padding: 0;
