@@ -16,18 +16,17 @@
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #e0e4ff;
-            transition: background 0.5s ease; /* Smooth background transition */
         }
         #countdown {
             font-size: 2em;
             color: #d4af37;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(210, 210, 210, 0.5);
-            background: rgba(40, 34, 40, 0.12);
+            background: rgba(40, 34, 40, 0.12); /* Semi-transparent background */
             padding: 20px 40px;
             border-radius: 0px;
             box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.6);
             position: relative;
-            top: -50px;
+            top: -50px; /* Shift the box upwards */
         }
     </style>
 </head>
@@ -40,13 +39,8 @@
         const now = new Date();
         const timeDiff = deadlineDate - now;
 
-        const countdownElement = document.getElementById("countdown");
-        const bodyElement = document.body;
-
         if (timeDiff <= 0) {
-            countdownElement.textContent = "The deadline has passed!";
-            bodyElement.style.background = "url('deadline-passed.jpg') no-repeat center center fixed";
-            bodyElement.style.backgroundSize = "cover";
+            document.getElementById("countdown").textContent = "The deadline has passed!";
             return;
         }
 
@@ -55,7 +49,7 @@
         const remainingDays = days % 7;
 
         let message;
-        if (days < 20) {
+        if (days < 30) {
             message = `It is ${days} day${days > 1 ? 's' : ''} till I see you again.`;
         } else {
             message = "It is ";
@@ -65,14 +59,7 @@
             message += " till I see you again.";
         }
 
-        // Change background if the deadline is within a week
-        if (days < 7) {
-            bodyElement.style.background = "url('Mussorie.jpg') no-repeat center center fixed";
-            bodyElement.style.backgroundSize = "cover";
-            message = "I cant believe it!! " + message;
-        }
-
-        countdownElement.textContent = message;
+        document.getElementById("countdown").textContent = message;
     }
 
     // Set your deadline date here (YYYY-MM-DD)
